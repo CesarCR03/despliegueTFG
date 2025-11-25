@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('User')->onDelete('cascade'); // Relación con tu tabla User
-            $table->decimal('total', 10, 2);
-            $table->string('estado')->default('completado'); // ej: completado, enviado
-            $table->timestamps(); // Fecha del pedido (created_at)
-        });
+        if (!Schema::hasTable('pedidos')) {
+
+            Schema::create('pedidos', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+                $table->decimal('total', 10, 2);
+                $table->string('estado')->default('completado');
+                $table->timestamps();
+            });
+
+        } // CIERRA EL IF AQUÍ
     }
 
     /**
