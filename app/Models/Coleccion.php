@@ -28,7 +28,7 @@ class Coleccion extends Model
     {
         return $this->belongsToMany(
             Imagen::class,
-            'Coleccion_Imagen', // Mayúsculas según la foto
+            'coleccion_imagen', // Mayúsculas según la foto
             'id_coleccion',
             'id_imagen'
         )->orderBy('id_imagen', 'desc');
