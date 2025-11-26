@@ -10,7 +10,7 @@ class Imagen extends Model
     use HasFactory;
 
     // COINCIDE CON RAILWAY: I mayúscula
-    protected $table = 'Imagen';
+    protected $table = 'imagen';
 
     protected $primaryKey = 'id_imagen';
     public $timestamps = false;
