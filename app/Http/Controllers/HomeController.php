@@ -20,7 +20,7 @@ class HomeController extends Controller
         $categorias = Categoria::all();
 
         // 2. NUEVO: Cargar Colecciones (Ordenadas por las más recientes primero)
-        $colecciones = Coleccion::orderBy('id_coleccion', 'asc')->get();
+        $colecciones = Coleccion::orderBy('id', 'asc')->get();
 
         // 3. Lógica de productos (la que ya tenías para filtrar por stock)
         $productos = Producto::whereHas('tallas', function ($query) {
