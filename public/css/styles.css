@@ -6,6 +6,41 @@
     font-style: normal;
 }
 
+.btn-share {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex; /* Alineación correcta */
+}
+
+/* Estilos del Toast */
+.toast {
+    visibility: hidden; /* Oculto por defecto */
+    min-width: 250px;
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%); /* Centrado horizontal exacto */
+    font-size: 14px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s, visibility 0.5s;
+}
+
+/* Clase para mostrar el Toast */
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px; /* Pequeña animación hacia arriba */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -229,7 +264,6 @@ footer nav .enlacesD {
 .colecciones img:hover{
     opacity: 0.8;
 }
-
 /* Drops */
 .drops-gallery-container {
     display: flex;
@@ -386,7 +420,7 @@ footer nav .enlacesD {
 
 .thumbnails-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 2 miniaturas por fila en escritorio */
+    grid-template-columns: repeat(3, 1fr); /* 3 miniaturas por fila en escritorio */
     gap: 10px;
 }
 
@@ -400,6 +434,7 @@ footer nav .enlacesD {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
 }
 /* Tienda */
 
@@ -435,6 +470,70 @@ footer nav .enlacesD {
     margin-top: 10px;
     margin-left: 20px;
 }
+/* Influencers */
+/* Contenedor principal de la página */
+.social-page-container {
+    background-color: #fafaf9; /* Tono piedra muy suave */
+    min-height: 100vh;
+    padding: 60px 20px;
+    font-family: 'Lato', sans-serif; /* O la fuente que uses en tu app */
+}
+
+/* Encabezado */
+.social-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.social-header h2 {
+    color: #5d6d39; /* Tu color verde oliva */
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    font-family: serif; /* Estilo elegante */
+}
+
+.social-header p {
+    color: #78716c; /* Gris piedra */
+    font-size: 1.1rem;
+}
+
+/* LA CUADRÍCULA (GRID 3x3) */
+.instagram-grid {
+    display: grid;
+    /* Esto crea 3 columnas iguales automáticamente */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* Espacio entre las fotos */
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar la cuadrícula */
+}
+
+/* Tarjeta individual de cada post */
+.instagram-card {
+    background: white;
+    border: 1px solid #e7e5e4;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.instagram-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(93, 109, 57, 0.15); /* Sombra verdosa sutil */
+    border-color: #5d6d39;
+}
+
+/* Estilos del Iframe */
+.instagram-card iframe {
+    width: 100%;
+    /* Altura mínima para asegurar que se ve el post vertical */
+    min-height: 550px;
+}
 
 /* Colecciones */
 /* --- FILTRO DE PRODUCTOS (Centrado con Flexbox) --- */
@@ -469,11 +568,8 @@ ul.navegador li {
 }
 
 .navegador li a:hover{
-    color: #ffff00;
-    background-color: #333;
-    padding: 3px;
-    opacity: 0.9;
-    border-radius: 1px;
+    color: #5d6d39;
+    text-decoration: underline;
 }
 
 .capaTabla{
@@ -508,15 +604,6 @@ ul.navegador li {
     padding-top: 7px;
     text-decoration: none;
     color: #333;
-}
-
-/*.imagenesHover{
-    transition: 0.5 ease;
-}
-
-.Colecciones .imagenesHover:hover {
-    content: attr(data-hover);
-    width: 200px;
 }
 
 /* Descripciones Articulos */
@@ -1111,18 +1198,20 @@ ul.navegador li {
     }
 
     .hamburg {
-        width: 30px;
-        height: 47px;
+        width: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         position: fixed;
-        top: 65px;
-        z-index: 3000;
+        top: 58px;
+        z-index: 3001;
         left: 1px;
     }
 
+    .enlacesD{
+        display: none;
+    }
     .menuPrincipal li {
         list-style: none;
         padding: 10px 0;
@@ -1146,20 +1235,68 @@ ul.navegador li {
 
     /* Contenedor del menú central */
     .enlacesP {
-        display: flex;            /* Alinea los elementos en fila */
-        align-items: center;      /* Los centra verticalmente */
-        justify-content: center;  /* Los centra horizontalmente */
-        gap: 20px;                /* Espacio entre cada enlace */
+        display: flex; /* Forzamos que se vea */
+        width: 100%;
+        justify-content: center; /* Centramos el contenido (el logo) */
+        align-items: center;
+        position: absolute;      /* Lo sacamos del flujo para centrarlo perfectamente */
+        left: 0;
+        pointer-events: none;    /* Para que el div transparente no bloquee clics en los lados */
     }
 
-    /* Estilo específico para el Logo Central */
+    .enlacesP .aux {
+        display: none;
+    }
+
+    .enlacesP a:has(.header-logo) {
+        pointer-events: auto;
+        display: flex;
+    }
+
     .header-logo {
-        width: 50px !important;   /* Un poco más grande que los iconos de usuario */
-        height: 50px !important;  /* Mantenemos la proporción */
+        width: 50px;
+        height: 50px;
         object-fit: contain;
-        display: block;           /* Corrige comportamientos extraños de línea */
     }
 
+    .enlacesI .iconoSesion{
+        display: none;
+    }
+
+    .icons-row {
+        margin-top: 40px !important;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* La caja que pone los iconos en fila */
+    .icons-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 35px; /* Espacio entre cada icono */
+    }
+
+    /* Tamaño uniforme para los iconos en el menú móvil */
+    .icons-container img {
+        width: 28px !important;
+        height: 28px !important;
+        object-fit: contain;
+        display: block;
+        opacity: 0.8; /* Un toque estético */
+        transition: opacity 0.3s;
+    }
+
+    .icons-container img:hover {
+        opacity: 1;
+    }
+
+    /* Aseguramos que el botón de compartir no rompa la fila */
+    .icons-container .btn-share {
+        display: flex;
+        align-items: center;
+    }
     .colecciones img {
         width: 100%;
         height: auto;
@@ -1197,14 +1334,6 @@ ul.navegador li {
 
     .footer-content img {
         margin: 10px 0;
-    }
-
-    .enlacesI, .enlacesD {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 10px 0;
-        color: #000000;
     }
 
     .Colecciones td{
@@ -1258,6 +1387,15 @@ ul.navegador li {
     .tienda img {
         width: 100%;
         height: 30vh;
+    }
+
+    /* Influencers */
+    .instagram-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-header h2 {
+        font-size: 1.5rem;
     }
 
     /* Carrito */
@@ -1316,11 +1454,11 @@ ul.navegador li {
         justify-content: space-between;
     }
     /* Disposición de dos columnas */
-    .product-detail-flex-container {
+    /*.product-detail-flex-container {
         flex-direction: row;
         align-items: flex-start;
-        text-align: left; /* Des-centra el texto */
-    }
+        text-align: left; /* Des-centra el texto
+    }*/
 
     .product-image-area {
         flex: 1 1 50%;
@@ -1499,6 +1637,9 @@ ul.navegador li {
         text-decoration: underline; /* Puedes añadir un subrayado al pasar el ratón */
     }
 
+    .icons-row{
+        display: none;
+    }
     nav {
         flex-direction: row;
         justify-content: space-around;
@@ -1694,5 +1835,9 @@ ul.navegador li {
     .thumbnails-grid {
         grid-template-columns: 1fr; /* 1 miniatura por fila para usar el espacio vertical */
         gap: 10px;
+    }
+    /* Influencers */
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

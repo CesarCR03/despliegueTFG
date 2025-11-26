@@ -1,75 +1,58 @@
 <x-guest-layout>
-    <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                          type="password"
+                          name="password"
+                          required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <input id="remember_me" type="checkbox"
+                       class="rounded border-gray-300 text-[#9a3412] shadow-sm focus:ring-[#9a3412]"
+                       name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
 
-        @if (Route::has('register'))
-            <a
-                href="{{ route('register') }}"
-                class="text-sm text-white dark:text-gray-400  dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-
-                {{-- 2. Tus estilos del DIV, más los nuevos para que funcione --}}
-                style="
-            display: block;
-            text-decoration: none;
-
-            text-align: center;
-            background-color: #111827;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid black;
-            box-shadow: 0 0 1px #6b7280;
-
-            transition: background-color 0.2s;
-        "
-
-                {{-- 3. El hover con JavaScript que te sugerí antes --}}
-                onmouseover="this.style.backgroundColor='#4B5563'"
-                onmouseout="this.style.backgroundColor='#111827'"
-            >
-                {{ __('Register') }}
-            </a>
-        @endif
         <div class="flex items-center justify-end mt-4">
-
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#9a3412]" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            {{-- AQUI ESTABA EL ERROR: Faltaban clases de estructura --}}
+            <x-primary-button class="ms-3 bg-[#9a3412] hover:bg-[#7c2d12] px-2 py-1 rounded-md">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+        @if (Route::has('register'))
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                <p class="text-sm text-gray-500 mb-3">{{ __('¿No tienes cuenta?') }}</p>
+
+                {{-- Botón REGISTER: Estilo bordeado (Outline) para no confundir --}}
+                <a href="{{ route('register') }}"
+                   class="inline-flex items-center px-4 py-2 bg-white border border-[#9a3412] rounded-md font-semibold text-xs text-[#9a3412] uppercase tracking-widest hover:bg-[#9a3412] hover:text-white transition ease-in-out duration-150 focus:outline-none focus:ring-2 focus:ring-[#9a3412] focus:ring-offset-2">
+                    {{ __('Register') }}
+                </a>
+            </div>
+        @endif
     </form>
 </x-guest-layout>

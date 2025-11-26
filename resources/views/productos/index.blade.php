@@ -16,8 +16,6 @@
                         $todoRoute = route('tienda');
                         $title = 'Tienda';
                     }
-                    // Esto es opcional si ya usas View::share en otro lado
-                    // View::share('title', $title);
                 @endphp
 
                 <li>·</li>

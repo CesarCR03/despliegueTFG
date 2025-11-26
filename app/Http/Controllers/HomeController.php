@@ -84,5 +84,22 @@ class HomeController extends Controller
 
         return view('drops', compact('allCollections', 'imagenes', 'currentCollectionId', 'selectedCollection'));
     }
+    public function influencers()
+    {
+        // Solo necesario el CÓDIGO del post (lo que va después de /p/ en la URL)
+        $posts = [
+            ['code' => 'DAV0zpao1lC'],
+            ['code' => 'C3VLCwnIxmp'],
+            ['code' => 'DGLYkodoUQx'],
+            ['code' => 'DQvmmyhlFeN'],
+            ['code' => 'DQZbM2mDDev'],
+            ['code' => 'DQ9s1PagMYr'],
+            ['code' => 'DFn8SDEuDWM'],
+            ['code' => 'C6eshcJLwmV'],
+            ['code' => 'DNqwlIFyy60'],
+        ];
+
+        return view('influencers', compact('posts'));
+    }
 }
 

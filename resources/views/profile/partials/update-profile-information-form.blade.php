@@ -19,13 +19,17 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text"
+                          class="mt-1 block w-full border-gray-300 focus:border-[#5d6d39] focus:ring-[#5d6d39] rounded-md shadow-sm"
+                          :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="name" name="name" type="text"
+                          class="mt-1 block w-full border-gray-300 focus:border-[#5d6d39] focus:ring-[#5d6d39] rounded-md shadow-sm"
+                          :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -48,7 +52,10 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            {{-- Botón con el nuevo color #5d6d39 y estructura corregida --}}
+            <x-primary-button class="bg-[#5d6d39] hover:bg-[#4a572d] text-white px-3 py-1 rounded-md transition ease-in-out duration-150">
+                {{ __('Save') }}
+            </x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

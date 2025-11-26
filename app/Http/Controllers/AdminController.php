@@ -289,9 +289,9 @@ class AdminController extends Controller
             'descripcion' => 'required|string',
             'precio' => 'required|numeric|min:0',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'stock_s' => 'nullable|integer|min:0',
-            'stock_m' => 'nullable|integer|min:0',
-            'stock_l' => 'nullable|integer|min:0',
+            'stock_S' => 'nullable|integer|min:0',
+            'stock_M' => 'nullable|integer|min:0',
+            'stock_L' => 'nullable|integer|min:0',
             'stock_unica' => 'nullable|integer|min:0',
             'categorias' => 'nullable|array',
             'colecciones' => 'nullable|array',
@@ -315,9 +315,9 @@ class AdminController extends Controller
             // 4. Actualizar Stock
             // Usamos updateOrCreate para cada talla
             $tallas = [
-                'S' => $request->stock_s,
-                'M' => $request->stock_m,
-                'L' => $request->stock_l,
+                'S' => $request->stock_S, // Recuperamos input 'stock_S'
+                'M' => $request->stock_M, // Recuperamos input 'stock_M'
+                'L' => $request->stock_L, // Recuperamos input 'stock_L'
                 'unica' => $request->stock_unica,
             ];
 
