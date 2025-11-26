@@ -56,7 +56,7 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $request->validate([
-            'id_producto' => 'required|exists:Producto,id_producto',
+            'id_producto' => 'required|exists:producto,id_producto',
             'cantidad' => 'required|integer|min:1',
             'talla' => 'required|string|max:10',
         ]);
@@ -108,7 +108,7 @@ class CartController extends Controller
     public function updateCart(Request $request)
     {
         $request->validate([
-            'id_producto' => 'required|exists:Producto,id_producto',
+            'id_producto' => 'required|exists:producto,id_producto',
             'talla' => 'required|string|max:10',
             'cantidad' => 'required|integer|min:0',
         ]);
