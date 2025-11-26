@@ -13,7 +13,9 @@ return new class extends Migration
     {
         if (!Schema::hasTable('coleccion')) {
             Schema::create('coleccion', function (Blueprint $table) {
-                $table->id(); // ESTO ES VITAL. Crea la columna 'id'.
+                // USAMOS TU ID PERSONALIZADO
+                $table->id('id_coleccion');
+
                 $table->string('Nombre');
                 $table->integer('Año');
                 $table->string('imagen_url')->nullable();

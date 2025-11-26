@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up()
     {
-        // CAMBIO: 'producto' (minúscula)
-        Schema::create('producto', function (Blueprint $table) {
-            // CAMBIO: Usamos id() para que sea BigInteger compatible con Laravel moderno
-            $table->id('id_producto');
-            $table->string('Nombre');
-            $table->text('Descripcion');
-            $table->decimal('Precio', 8, 2);
-            $table->integer('Stock')->nullable(); // Ponemos nullable por si acaso
-            $table->timestamps(); // ¡Faltaban los timestamps!
-        });
+        if (!Schema::hasTable('producto')) {
+            Schema::create('producto', function (Blueprint $table) {
+                // USAMOS TU ID PERSONALIZADO
+                $table->id('id_producto');
+
+                $table->string('Nombre');
+                $table->text('Descripcion');
+                $table->decimal('Precio', 8, 2);
+                $table->integer('Stock')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

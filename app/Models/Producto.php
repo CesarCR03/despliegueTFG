@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     // COINCIDE CON RAILWAY: P mayúscula
-    protected $table = 'Producto';
+    protected $table = 'producto';
 
     protected $primaryKey = 'id_producto';
     public $timestamps = false;

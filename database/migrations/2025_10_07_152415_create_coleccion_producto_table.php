@@ -13,22 +13,27 @@ return new class extends Migration
     {
         if (!Schema::hasTable('coleccion_producto')) {
             Schema::create('coleccion_producto', function (Blueprint $table) {
-                // Definimos las columnas
-                $table->unsignedBigInteger('id_coleccion'); // BigInteger para coincidir con id()
-                $table->unsignedBigInteger('id_producto');  // BigInteger para coincidir con id()
+                // 1. Definimos las columnas (tienen que ser del mismo tipo que los IDs padres)
+                $table->unsignedBigInteger('id_coleccion');
+                $table->unsignedBigInteger('id_producto');
 
-                // Definimos las relaciones apuntando a 'id'
-                $table->foreign('id_coleccion')->references('id')->on('coleccion')->onDelete('cascade');
-                $table->foreign('id_producto')->references('id')->on('producto')->onDelete('cascade');
+                // 2. Definimos las claves foráneas MANUALMENTE
+                // "La columna 'id_coleccion' de esta tabla... apunta a la columna 'id_coleccion' de la tabla 'coleccion'"
+                $table->foreign('id_coleccion')
+                    ->references('id_coleccion') // Apuntamos a tu ID personalizado
+                    ->on('coleccion')            // En la tabla en minúscula
+                    ->onDelete('cascade');
+
+                $table->foreign('id_producto')
+                    ->references('id_producto')  // Apuntamos a tu ID personalizado
+                    ->on('producto')             // En la tabla en minúscula
+                    ->onDelete('cascade');
 
                 $table->primary(['id_coleccion', 'id_producto']);
             });
         }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('coleccion_producto');

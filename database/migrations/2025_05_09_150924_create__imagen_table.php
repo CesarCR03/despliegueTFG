@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('imagen', function (Blueprint $table) {
-            $table->id('id_imagen');
-            $table->string('URL');
+        if (!Schema::hasTable('imagen')) {
+            Schema::create('imagen', function (Blueprint $table) {
+                $table->id('id_imagen');
+                $table->string('URL');
 
-            // IMPORTANTE: Relación con producto (si cada imagen es de un producto)
-            // Si no la tienes aquí, asegúrate de tenerla en algún lado.
-            // Si usas la tabla pivote 'coleccion_imagen', esto está bien.
+                // Clave foránea apuntando a 'id_producto'
+                $table->unsignedBigInteger('producto_id')->nullable();
+                $table->foreign('producto_id')->references('id_producto')->on('producto')->onDelete('cascade');
 
-            // Añadimos la FK hacia producto si es necesaria (veo en tu código original que sí)
-            $table->foreignId('producto_id')->nullable()->constrained('producto', 'id_producto')->onDelete('cascade');
-
-            $table->timestamps();
-        });
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

@@ -8,7 +8,7 @@ class Coleccion extends Model
 {
     // COINCIDE CON RAILWAY: c minúscula
     protected $table = 'coleccion';
-
+    protected $primaryKey = 'id_coleccion';
     // Si usaste $table->id() en la migración, la clave es 'id'.
     // Si falla, descomenta la siguiente línea:
     // protected $primaryKey = 'id_coleccion';
