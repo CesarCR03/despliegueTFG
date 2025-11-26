@@ -11,20 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalle_pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');
-            $table->unsignedInteger('producto_id');
+        if (!Schema::hasTable('detalle_pedidos')) {
+            Schema::create('detalle_pedidos', function (Blueprint $table) {
+                $table->id();
 
-            $table->string('nombre_producto');
-            $table->decimal('precio_unitario', 10, 2);
-            $table->integer('cantidad');
-            $table->string('talla', 10);
-            $table->timestamps();
+                // Relación con Pedidos (usamos foreignId que ya es BigInteger)
+                $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');
 
-            // CORRECCIÓN: Cambiado 'Producto' a 'producto'
-            $table->foreign('producto_id')->references('id_producto')->on('producto');
-        });
+                // CORRECCIÓN IMPORTANTE: Cambiado a unsignedBigInteger
+                $table->unsignedBigInteger('producto_id');
+
+                // Datos del detalle
+                $table->string('nombre_producto');
+                $table->decimal('precio_unitario', 10, 2);
+                $table->integer('cantidad');
+                $table->string('talla', 10);
+                $table->timestamps();
+
+                // Clave foránea apuntando a 'producto' (minúscula) y 'id_producto'
+                $table->foreign('producto_id')
+                    ->references('id_producto')
+                    ->on('producto'); // Tabla en minúscula
+            });
+        }
     }
 
     /**
