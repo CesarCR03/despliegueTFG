@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categoria extends Model
 {
     // Nombre de la tabla en la BD
-    protected $table = 'Categoria';
+    protected $table = 'categoria';
 
     // Clave primaria
     protected $primaryKey = 'id_categoria';

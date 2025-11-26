@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Coleccion extends Model
 {
     // Nombre de la tabla en la BD
-    protected $table = 'Coleccion';
+    protected $table = 'coleccion';
 
     // Clave primaria (coincide con tu migración)
     protected $primaryKey = 'id_coleccion';

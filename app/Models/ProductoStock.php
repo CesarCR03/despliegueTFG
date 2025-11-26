@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductoStock extends Model
 {
-    protected $table = 'Producto_stock';
+    protected $table = 'producto_stock';
     protected $fillable = ['id_producto', 'talla', 'stock'];
 
     public $timestamps = true;  // ← IMPORTANTE

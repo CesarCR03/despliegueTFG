@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Cesta extends Model
 {
     // Mapeo a la tabla Cesta
-    protected $table = 'Cesta';
+    protected $table = 'cesta';
 
     // Clave primaria
     protected $primaryKey = 'id_cesta';
