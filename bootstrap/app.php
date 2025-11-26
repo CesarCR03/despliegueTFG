@@ -11,11 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->trustProxies(at: '*');
+        // -------------------------------------
     })
-    ->withProviders([
-        App\Providers\RouteServiceProvider::class, // <-- La línea que registra nuestro archivo
-    ])
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
