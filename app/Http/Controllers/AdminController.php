@@ -64,9 +64,9 @@ class AdminController extends Controller
             'stock_l' => 'nullable|integer|min:0',
             'stock_unica' => 'nullable|integer|min:0',
             'categorias' => 'nullable|array',
-            'categorias.*' => 'exists:Categoria,id_categoria',
+            'categorias.*' => 'exists:categoria,id_categoria',
             'colecciones' => 'nullable|array',
-            'colecciones.*' => 'exists:Coleccion,id_coleccion',
+            'colecciones.*' => 'exists:coleccion,id_coleccion',
         ]);
 
         try {
