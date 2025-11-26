@@ -42,7 +42,7 @@ class HomeController extends Controller
     public function drops($idColeccion = null)
     {
         // 1. Cargar todas las colecciones para el menú
-        $allCollections = Coleccion::orderBy('id', 'desc')->get();
+        $allCollections = Coleccion::orderBy('id_coleccion  ', 'desc')->get();
 
         // 2. Determinar ID actual
         $currentCollectionId = $idColeccion ?: ($allCollections->first() ? $allCollections->first()->id_coleccion : null);

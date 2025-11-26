@@ -31,7 +31,7 @@ class ProductoController extends Controller
     {
         $productos = Producto::with('imagenes')
             ->whereHas('categorias', function ($query) use ($idCategoria) {
-                $query->where('Categoria.id_categoria', $idCategoria);
+                $query->where('categoria.id_categoria', $idCategoria);
             })
             ->paginate(15);
 
@@ -48,7 +48,7 @@ class ProductoController extends Controller
             ->whereHas('colecciones', function ($query) use ($idColeccion) {
                 // Filtra productos donde exista una entrada en la tabla pivote
                 // que coincida con el id_coleccion proporcionado.
-                $query->where('Coleccion.id_coleccion', $idColeccion);
+                $query->where('coleccion.id_coleccion', $idColeccion);
             })
             ->paginate(15);
 
@@ -60,11 +60,11 @@ class ProductoController extends Controller
         $productos = Producto::with('imagenes')
             // Filtrar por Colección
             ->whereHas('colecciones', function ($query) use ($idColeccion) {
-                $query->where('Coleccion.id_coleccion', $idColeccion);
+                $query->where('coleccion.id_coleccion', $idColeccion);
             })
             // Filtrar por Categoría
             ->whereHas('categorias', function ($query) use ($idCategoria) {
-                $query->where('Categoria.id_categoria', $idCategoria);
+                $query->where('categoria.id_categoria', $idCategoria);
             })
             ->paginate(15);
 
