@@ -11,20 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('producto_stock', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('id_producto');
-            $table->string('talla', 10);
-            $table->integer('stock');
-            $table->timestamps();
+        if (!Schema::hasTable('producto_stock')) {
+            Schema::create('producto_stock', function (Blueprint $table) {
+                $table->id();
 
-            // CORRECCIÓN: Cambiado 'Producto' a 'producto'
-            $table->foreign('id_producto')
-                ->references('id_producto')->on('producto')
-                ->onDelete('cascade');
+                // CORRECCIÓN: Cambiado a unsignedBigInteger
+                $table->unsignedBigInteger('id_producto');
 
-            $table->unique(['id_producto', 'talla']);
-        });
+                $table->string('talla', 10);
+                $table->integer('stock');
+                $table->timestamps();
+
+                $table->foreign('id_producto')
+                    ->references('id_producto')->on('producto')
+                    ->onDelete('cascade');
+
+                $table->unique(['id_producto', 'talla']);
+            });
+        }
     }
 
     /**
