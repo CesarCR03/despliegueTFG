@@ -18,7 +18,7 @@ class Categoria extends Model
     {
         return $this->belongsToMany(
             Producto::class,
-            'categoria_Producto',
+            'categoria_producto',
             'id_categoria',
             'id_producto'
         );

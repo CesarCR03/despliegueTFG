@@ -25,7 +25,7 @@ class Imagen extends Model
     {
         return $this->belongsToMany(
             Coleccion::class,
-            'coleccion_Imagen', // En la foto se ve con Mayúsculas (Coleccion_Imag...)
+            'coleccion_imagen', // En la foto se ve con Mayúsculas (Coleccion_Imag...)
             'id_imagen',
             'id_coleccion'
         );

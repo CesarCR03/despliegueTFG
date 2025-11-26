@@ -18,7 +18,7 @@ class Producto extends Model
     {
         return $this->belongsToMany(
             Categoria::class,
-            'categoria_Producto', // Coincide con la foto (Mayúsculas)
+            'categoria_producto',
             'id_producto',
             'id_categoria'
         );
@@ -28,7 +28,7 @@ class Producto extends Model
     {
         return $this->belongsToMany(
             Coleccion::class,
-            'coleccion_producto', // En la foto se ve en minúsculas (coleccion_prod...)
+            'coleccion_producto',
             'id_producto',
             'id_coleccion'
         );
