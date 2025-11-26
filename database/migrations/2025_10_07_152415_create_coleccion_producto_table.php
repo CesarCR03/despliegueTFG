@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coleccion_producto', function (Blueprint $table) {
-            // Necesitas definir las claves foráneas aquí
-            $table->unsignedInteger('id_coleccion');
-            $table->unsignedInteger('id_producto');
+        // Comprobamos si la tabla YA existe antes de intentar crearla
+        if (!Schema::hasTable('coleccion_producto')) {
+            Schema::create('coleccion_producto', function (Blueprint $table) {
+                $table->unsignedInteger('id_coleccion');
+                $table->unsignedInteger('id_producto');
 
-            // Definir las relaciones
-            // NOTA: Asegúrate si tu tabla es 'coleccion' o 'Coleccion' (ver punto 3)
-            $table->foreign('id_coleccion')->references('id_coleccion')->on('coleccion')->onDelete('cascade');
-            $table->foreign('id_producto')->references('id_producto')->on('producto')->onDelete('cascade');
+                // Definir las relaciones (Asegúrate que los nombres coinciden con tus tablas 'coleccion' y 'producto')
+                $table->foreign('id_coleccion')->references('id')->on('coleccion')->onDelete('cascade');
+                $table->foreign('id_producto')->references('id')->on('producto')->onDelete('cascade');
 
-            // Clave primaria compuesta para evitar duplicados
-            $table->primary(['id_coleccion', 'id_producto']);
-        });
+                // Clave primaria compuesta
+                $table->primary(['id_coleccion', 'id_producto']);
+            });
+        }
     }
 
     /**
