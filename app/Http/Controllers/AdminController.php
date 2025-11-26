@@ -69,7 +69,7 @@ class AdminController extends Controller
             'colecciones.*' => 'exists:coleccion,id_coleccion',
         ]);
 
-        //try {
+        try {
             DB::beginTransaction();
 
             // 2. Crear Producto
@@ -122,10 +122,10 @@ class AdminController extends Controller
 
             return redirect('/admin/productos')->with('success', 'Producto creado correctamente.');
 
-        /*} catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return back()->withInput()->with('error', 'Error técnico: ' . $e->getMessage());
-        }*/
+        }
     }
 
     public function coleccionCreate()

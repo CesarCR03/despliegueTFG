@@ -18,7 +18,7 @@ class Categoria extends Model
     {
         return $this->belongsToMany(
             Producto::class,
-            'Categoria_Producto', // En Railway sale con Mayúsculas
+            'categoria_Producto',
             'id_categoria',
             'id_producto'
         );

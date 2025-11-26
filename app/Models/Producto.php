@@ -18,7 +18,7 @@ class Producto extends Model
     {
         return $this->belongsToMany(
             Categoria::class,
-            'Categoria_Producto', // Coincide con la foto (Mayúsculas)
+            'categoria_Producto', // Coincide con la foto (Mayúsculas)
             'id_producto',
             'id_categoria'
         );
