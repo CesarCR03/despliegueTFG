@@ -1,56 +1,39 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    // Nombre de la tabla en la BD
+    // COINCIDE CON RAILWAY: P mayúscula
     protected $table = 'Producto';
 
-    // Clave primaria
     protected $primaryKey = 'id_producto';
-
-    // Desactivamos timestamps si la tabla no tiene created_at/updated_at
     public $timestamps = false;
 
-    // Campos que pueden asignarse masivamente
-    protected $fillable = [
-        'Nombre',
-        'Descripcion',
-        'Precio',   // en euros (€), número decimal
-    ];
+    protected $fillable = ['Nombre', 'Descripcion', 'Precio'];
 
-    /**
-     * Relación muchos a muchos con Categoria
-     */
     public function categorias()
     {
         return $this->belongsToMany(
             Categoria::class,
-            'Categoria_Producto',
+            'Categoria_Producto', // Coincide con la foto (Mayúsculas)
             'id_producto',
             'id_categoria'
         );
     }
 
-    // app/Models/Producto.php (dentro de la clase Producto)
-// ...
-
-
-// Relación muchos a muchos con Coleccion
     public function colecciones()
     {
         return $this->belongsToMany(
             Coleccion::class,
-            'Coleccion_Producto',
+            'coleccion_producto', // En la foto se ve en minúsculas (coleccion_prod...)
             'id_producto',
             'id_coleccion'
         );
     }
-    /**
-     * Relación uno a muchos con Imagen
-     */
+
     public function imagenes()
     {
         return $this->hasMany(Imagen::class, 'producto_id');
@@ -58,8 +41,6 @@ class Producto extends Model
 
     public function tallas()
     {
-        // Un producto tiene muchas tallas/stocks
         return $this->hasMany(ProductoStock::class, 'id_producto');
     }
 }
-

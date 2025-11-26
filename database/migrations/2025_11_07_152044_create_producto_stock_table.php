@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('producto_stock', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_producto'); // Clave foránea
+            $table->unsignedInteger('id_producto');
             $table->string('talla', 10);
             $table->integer('stock');
-            $table->timestamps(); // Opcional, pero recomendado
+            $table->timestamps();
 
-            // Definir la clave foránea
+            // CORRECCIÓN: Cambiado 'Producto' a 'producto'
             $table->foreign('id_producto')
-                ->references('id_producto')->on('Producto')
-                ->onDelete('cascade'); // Si se borra el producto, se borra el stock
+                ->references('id_producto')->on('producto')
+                ->onDelete('cascade');
 
-            // Evitar duplicados (que un producto no tenga dos "Talla S")
             $table->unique(['id_producto', 'talla']);
         });
     }

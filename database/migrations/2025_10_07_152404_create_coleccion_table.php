@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('coleccion', function (Blueprint $table) {
-            $table->id();
+            // Si quieres usar 'id_coleccion' como clave primaria:
+            $table->id('id_coleccion');
+
+            // Campos que faltaban según tu código:
+            $table->string('Nombre');
+            $table->integer('Año');
+            $table->string('imagen_url')->nullable();
+
             $table->timestamps();
         });
     }

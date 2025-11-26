@@ -5,14 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductoStock extends Model
 {
-    protected $table = 'producto_stock';
-    protected $fillable = ['id_producto', 'talla', 'stock'];
+    protected $table = 'producto_stock'; // minúscula
 
-    public $timestamps = true;  // ← IMPORTANTE
+    protected $fillable = ['id_producto', 'talla', 'stock'];
+    public $timestamps = true;
 
     public function producto()
     {
         return $this->belongsTo(Producto::class, 'id_producto');
     }
 }
-

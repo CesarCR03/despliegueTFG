@@ -11,17 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Imagen', function (Blueprint $table) {
+        Schema::create('imagen', function (Blueprint $table) {
             $table->id('id_imagen');
             $table->string('URL');
+
+            // IMPORTANTE: Relación con producto (si cada imagen es de un producto)
+            // Si no la tienes aquí, asegúrate de tenerla en algún lado.
+            // Si usas la tabla pivote 'coleccion_imagen', esto está bien.
+
+            // Añadimos la FK hacia producto si es necesaria (veo en tu código original que sí)
+            $table->foreignId('producto_id')->nullable()->constrained('producto', 'id_producto')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('Imagen');
+        Schema::dropIfExists('imagen');
     }
 };

@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Imagen extends Model
 {
-
     use HasFactory;
 
+    // COINCIDE CON RAILWAY: I mayúscula
     protected $table = 'Imagen';
+
     protected $primaryKey = 'id_imagen';
     public $timestamps = false;
-    protected $fillable = [
-        'URL',
-        'producto_id',
-    ];
+    protected $fillable = ['URL', 'producto_id'];
 
     public function producto()
     {
@@ -27,7 +25,7 @@ class Imagen extends Model
     {
         return $this->belongsToMany(
             Coleccion::class,
-            'Coleccion_Imagen', // Tabla pivote
+            'Coleccion_Imagen', // En la foto se ve con Mayúsculas (Coleccion_Imag...)
             'id_imagen',
             'id_coleccion'
         );

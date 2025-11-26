@@ -151,11 +151,11 @@ class AdminController extends Controller
             $rutaImagen = 'colecciones/' . $nombreArchivo;
         }
 
-        $ultimoId = Coleccion::max('id_coleccion');
-        $nuevoId = $ultimoId ? $ultimoId + 1 : 1;
+        //$ultimoId = Coleccion::max('id_coleccion');
+        //$nuevoId = $ultimoId ? $ultimoId + 1 : 1;
 
         Coleccion::create([
-            'id_coleccion' => $nuevoId,
+            //'id_coleccion' => $nuevoId,
             'Nombre' => $request->nombre,
             'Año' => $request->anio,
             'imagen_url' => $rutaImagen,

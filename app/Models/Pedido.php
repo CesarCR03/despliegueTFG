@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Pedido extends Model
 {
     use HasFactory;
 
-    protected $table = 'pedidos';
+    protected $table = 'pedidos'; // minúscula plural
     protected $fillable = ['user_id', 'total', 'estado'];
+
     public function detalles()
     {
         return $this->hasMany(DetallePedido::class, 'pedido_id');

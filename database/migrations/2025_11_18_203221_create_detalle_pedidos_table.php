@@ -14,18 +14,16 @@ return new class extends Migration
         Schema::create('detalle_pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');
-            $table->unsignedInteger('producto_id'); // Tu tabla Producto usa unsignedInteger
+            $table->unsignedInteger('producto_id');
 
-            // Guardamos estos datos "congelados" por si cambian en el futuro en la tienda
             $table->string('nombre_producto');
             $table->decimal('precio_unitario', 10, 2);
-
             $table->integer('cantidad');
             $table->string('talla', 10);
             $table->timestamps();
 
-            // FK manual porque tu tabla se llama 'Producto' (singular/mayúscula)
-            $table->foreign('producto_id')->references('id_producto')->on('Producto');
+            // CORRECCIÓN: Cambiado 'Producto' a 'producto'
+            $table->foreign('producto_id')->references('id_producto')->on('producto');
         });
     }
 

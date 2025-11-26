@@ -11,22 +11,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Categoria_Producto', function (Blueprint $table) {
-            $table->unsignedInteger('id_categoria');
-            $table->unsignedInteger('id_producto');
-            $table->foreign('id_categoria')
-                ->references('id_categoria')->on('Categoria');
-            $table->foreign('id_producto')
-                ->references('id_producto')->on('Producto');
+        // Nombre estándar en minúsculas: categoria_producto
+        Schema::create('categoria_producto', function (Blueprint $table) {
+            // Usamos foreignId para que coincida con el tipo BigInteger de las tablas principales
+            $table->foreignId('id_categoria')->constrained('categoria', 'id_categoria')->onDelete('cascade');
+            $table->foreignId('id_producto')->constrained('producto', 'id_producto')->onDelete('cascade');
+
+            $table->primary(['id_categoria', 'id_producto']);
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('Categoria_Producto');
+        Schema::dropIfExists('categoria_producto');
     }
 };

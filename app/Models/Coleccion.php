@@ -1,5 +1,4 @@
 <?php
-// app/Models/Coleccion.php
 
 namespace App\Models;
 
@@ -7,33 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coleccion extends Model
 {
-    // Nombre de la tabla en la BD
+    // COINCIDE CON RAILWAY: c minúscula
     protected $table = 'coleccion';
 
-    // Clave primaria (coincide con tu migración)
-    protected $primaryKey = 'id_coleccion';
+    // Si usaste $table->id() en la migración, la clave es 'id'.
+    // Si falla, descomenta la siguiente línea:
+    // protected $primaryKey = 'id_coleccion';
 
-    // Desactivamos timestamps para que coincida con tu esquema
     public $timestamps = false;
 
-    // Campos que pueden asignarse masivamente
-    protected $fillable = [
-        'id_coleccion',
-        'Nombre',
-        'Año',
-        'imagen_url'
-    ];
+    protected $fillable = ['Nombre', 'Año', 'imagen_url'];
 
-    /**
-     * Relación muchos a muchos con Producto
-     */
     public function productos()
     {
         return $this->belongsToMany(
             Producto::class,
-            'Coleccion_Producto', // Tabla pivote
-            'id_coleccion',       // Clave de Coleccion en la tabla pivote
-            'id_producto'         // Clave de Producto en la tabla pivote
+            'coleccion_producto', // Minúsculas según la foto
+            'id_coleccion',
+            'id_producto'
         );
     }
 
@@ -41,10 +31,9 @@ class Coleccion extends Model
     {
         return $this->belongsToMany(
             Imagen::class,
-            'Coleccion_Imagen', // Tabla pivote
+            'Coleccion_Imagen', // Mayúsculas según la foto
             'id_coleccion',
             'id_imagen'
-        )
-        ->orderBy('id_imagen', 'desc');
+        )->orderBy('id_imagen', 'desc');
     }
 }
