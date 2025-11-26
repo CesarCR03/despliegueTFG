@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('Producto', function (Blueprint $table) {
-            $table->dropColumn('Stock'); // Eliminamos la columna antigua
+        Schema::table('producto', function (Blueprint $table) {
+            $table->dropColumn('Stock');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('Producto', function (Blueprint $table) {
-            $table->integer('Stock'); // La volvemos a añadir si hacemos rollback
+        Schema::table('producto', function (Blueprint $table) {
+            $table->integer('Stock');
         });
     }
 };
