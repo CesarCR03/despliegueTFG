@@ -2,14 +2,10 @@
 
 namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategoriaProductoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $data = [
@@ -32,6 +28,7 @@ class CategoriaProductoSeeder extends Seeder
             ['id_producto' => 3, 'id_categoria' => 3],
         ];
 
-        DB::table('Categoria_Producto')->insert($data);
+        // CORRECCIÓN: Tabla 'categoria_producto' en minúscula
+        DB::table('categoria_producto')->insert($data);
     }
 }

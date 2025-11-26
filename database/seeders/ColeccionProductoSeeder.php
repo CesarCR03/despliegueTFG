@@ -2,14 +2,10 @@
 
 namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ColeccionProductoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $data = [
@@ -28,6 +24,7 @@ class ColeccionProductoSeeder extends Seeder
             ['id_producto' => 10, 'id_coleccion' => 2],
         ];
 
-        DB::table('Coleccion_Producto')->insert($data);
+        // CORRECCIÓN: Tabla 'coleccion_producto' en minúscula
+        DB::table('coleccion_producto')->insert($data);
     }
 }
