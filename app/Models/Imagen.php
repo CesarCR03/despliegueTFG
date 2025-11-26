@@ -10,7 +10,7 @@ class Imagen extends Model
 
     use HasFactory;
 
-    protected $table = 'imagen';
+    protected $table = 'Imagen';
     protected $primaryKey = 'id_imagen';
     public $timestamps = false;
     protected $fillable = [
